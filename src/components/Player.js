@@ -5,8 +5,8 @@ import { ReactComponent as SkipBack } from '../assets/caret-back.svg';
 import { ReactComponent as SkipForward } from '../assets/caret-forward.svg';
 
 const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
-  const [audioDuration, setAudioDuration] = useState('0:00');
-  const [currentTime, setCurrentTime] = useState('0:00');
+  const [audioDuration, setAudioDuration] = useState();
+  const [currentTime, setCurrentTime] = useState();
   const audioRef = useRef();
 
   useEffect(() => {
@@ -28,26 +28,21 @@ const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
   };
 
   const calcTime = time => {
-    return time < 10 || time % 60 < 10
-      ? `${Math.floor(time / 60)}:0${Math.floor(time % 60)}`
-      : `${Math.floor(time / 60)}:${Math.floor(time % 60)}`;
+    if (time) {
+      return (
+        Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
+      );
+    }
+    return '0:00';
   };
 
   return (
     <div className="player">
       <h1>Player</h1>
       <div className="player__timer">
-        <span className="player__timer--start">
-          {calcTime(currentTime) !== 'NaN:NaN' && calcTime(currentTime)
-            ? calcTime(currentTime)
-            : '0:00'}
-        </span>
+        <span className="player__timer--start">{calcTime(currentTime)}</span>
         <input type="range" />
-        <span className="player__timer--end">
-          {calcTime(audioDuration) !== 'NaN:NaN' && calcTime(audioDuration)
-            ? calcTime(audioDuration)
-            : '0:00'}
-        </span>
+        <span className="player__timer--end">{calcTime(audioDuration)}</span>
       </div>
       <div className="player__icons--container">
         <SkipBack onClick={() => onChangeSong(-1)} className="player__icon" />
@@ -60,6 +55,7 @@ const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
       <audio
         onTimeUpdate={timeUpdateHandler}
         ref={audioRef}
+        onLoadedMetadataCapture={timeUpdateHandler}
         src={currentSong.audio}
       ></audio>
     </div>
