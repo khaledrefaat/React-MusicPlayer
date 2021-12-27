@@ -1,8 +1,17 @@
 import React from 'react';
 import LibrarySong from './LibrarySong';
 
-const Library = ({ songs }) => {
-  const renderSongs = songs.map(song => <LibrarySong song={song} />);
+const Library = ({ songs, setSong }) => {
+  const onClickHandler = song => {
+    const songIndex = songs.findIndex(
+      currentSong => currentSong.id === song.id
+    );
+    setSong(songIndex);
+  };
+
+  const renderSongs = songs.map(song => (
+    <LibrarySong key={Math.random()} onClick={onClickHandler} song={song} />
+  ));
 
   return (
     <div className="library">

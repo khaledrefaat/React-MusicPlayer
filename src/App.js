@@ -28,6 +28,11 @@ const App = () => {
     setCurrentSong(songs[index]);
   };
 
+  const handelLibrarySong = index => {
+    setCurrentSong(songs[index]);
+    setSongIndex(index);
+  };
+
   return (
     <div className="container">
       <Song currentSong={currentSong} />
@@ -37,7 +42,7 @@ const App = () => {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
       />
-      <Library songs={songs} />
+      <Library setSong={handelLibrarySong} songs={songs} />
     </div>
   );
 };
