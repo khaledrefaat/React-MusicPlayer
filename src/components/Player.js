@@ -5,8 +5,8 @@ import { ReactComponent as SkipBack } from '../assets/caret-back.svg';
 import { ReactComponent as SkipForward } from '../assets/caret-forward.svg';
 
 const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
-  const [audioDuration, setAudioDuration] = useState();
-  const [currentTime, setCurrentTime] = useState();
+  const [audioDuration, setAudioDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef();
 
   useEffect(() => {
@@ -27,6 +27,11 @@ const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
     setCurrentTime(e.target.currentTime);
   };
 
+  const dragHandler = e => {
+    setCurrentTime(e.target.value);
+    audioRef.current.currentTime = e.target.value;
+  };
+
   const calcTime = time => {
     if (time) {
       return (
@@ -41,7 +46,13 @@ const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
       <h1>Player</h1>
       <div className="player__timer">
         <span className="player__timer--start">{calcTime(currentTime)}</span>
-        <input type="range" />
+        <input
+          min={0}
+          max={audioDuration || 0}
+          value={currentTime}
+          onChange={dragHandler}
+          type="range"
+        />
         <span className="player__timer--end">{calcTime(audioDuration)}</span>
       </div>
       <div className="player__icons--container">
@@ -57,6 +68,7 @@ const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
         ref={audioRef}
         onLoadedMetadataCapture={timeUpdateHandler}
         src={currentSong.audio}
+        onEnded={() => onChangeSong(1)}
       ></audio>
     </div>
   );
