@@ -5,6 +5,7 @@ import './styles/app.scss';
 import Song from './components/Song';
 import Player from './components/Player';
 import data from './data';
+import Library from './components/Library';
 
 const songs = data();
 
@@ -15,7 +16,6 @@ const App = () => {
 
   const handelNextSong = direction => {
     let index = 0;
-
     if (songIndex === 0 && direction < 0) {
       index = songs.length - 1;
     } else if (songIndex === songs.length - 1 && direction > 0) {
@@ -37,6 +37,7 @@ const App = () => {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
       />
+      <Library songs={songs} />
     </div>
   );
 };

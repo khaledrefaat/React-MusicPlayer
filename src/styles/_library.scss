@@ -1,0 +1,41 @@
+.library {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 4px 4px 3rem rgb(204, 204, 204);
+  overflow: scroll;
+
+  h2 {
+    padding: 2rem;
+  }
+}
+
+.library-song {
+  display: flex;
+  padding: 1rem 2rem;
+  align-items: flex-start;
+  cursor: pointer;
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+
+  img {
+    width: 30%;
+  }
+
+  &:hover {
+    background-color: #dedee1;
+  }
+}
+
+.song-description {
+  padding-left: 1rem;
+  h3 {
+    font-size: 1rem;
+  }
+  h4 {
+    font-size: 0.7rem;
+  }
+}

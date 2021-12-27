@@ -11,7 +11,23 @@
   */
 * {
   margin: 0;
+  // changing the shape of scroll bar (works only in firefox)
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
 }
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 20px;
+  border: transparent;
+}
+
 /*
     3. Allow percentage-based heights in the application
   */
@@ -27,6 +43,7 @@ body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  font-family: 'Lato', sans-serif;
 }
 /*
     6. Improve media defaults
@@ -59,7 +76,8 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
-  color: rgb(54, 54, 54);
+  color: rgb(100, 100, 100);
+  font-weight: 400;
 }
 /*
     9. Create a root stacking context

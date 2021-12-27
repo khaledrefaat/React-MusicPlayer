@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 
 import { ReactComponent as PlayIcon } from '../assets/play.svg';
+import { ReactComponent as PauseIcon } from '../assets/pause.svg';
 import { ReactComponent as SkipBack } from '../assets/caret-back.svg';
 import { ReactComponent as SkipForward } from '../assets/caret-forward.svg';
 
@@ -57,10 +58,17 @@ const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
       </div>
       <div className="player__icons--container">
         <SkipBack onClick={() => onChangeSong(-1)} className="player__icon" />
-        <PlayIcon
-          onClick={handelSongOnPlay}
-          className="player__icon player__icon--play"
-        />
+        {isPlaying ? (
+          <PauseIcon
+            onClick={handelSongOnPlay}
+            className="player__icon player__icon--play"
+          />
+        ) : (
+          <PlayIcon
+            onClick={handelSongOnPlay}
+            className="player__icon player__icon--play"
+          />
+        )}
         <SkipForward onClick={() => onChangeSong(1)} className="player__icon" />
       </div>
       <audio
