@@ -6,6 +6,7 @@ import Song from './components/Song';
 import Player from './components/Player';
 import data from './data';
 import Library from './components/Library';
+import LibraryToggle from './components/LibraryToggle';
 
 const songs = data();
 
@@ -13,6 +14,7 @@ const App = () => {
   const [songIndex, setSongIndex] = useState(0);
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLibraryOpen, setIsLibraryOpen] = useState(false);
 
   const handelNextSong = direction => {
     let index = 0;
@@ -37,6 +39,8 @@ const App = () => {
     if (e.key === ' ') setIsPlaying(isPlaying => !isPlaying);
   };
 
+  console.log(isLibraryOpen);
+
   return (
     <div tabIndex={0} onKeyDown={handelSpaceClick} className="container">
       <Song currentSong={currentSong} />
@@ -46,7 +50,12 @@ const App = () => {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
       />
-      <Library setSong={handelLibrarySong} songs={songs} />
+      <Library
+        isLibraryOpen={isLibraryOpen}
+        setSong={handelLibrarySong}
+        songs={songs}
+      />
+      <LibraryToggle setIsLibraryOpen={setIsLibraryOpen} />
     </div>
   );
 };

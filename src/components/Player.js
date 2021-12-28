@@ -2,8 +2,8 @@ import React, { useRef, useEffect, useState } from 'react';
 
 import { ReactComponent as PlayIcon } from '../assets/play.svg';
 import { ReactComponent as PauseIcon } from '../assets/pause.svg';
-import { ReactComponent as SkipBack } from '../assets/caret-back.svg';
-import { ReactComponent as SkipForward } from '../assets/caret-forward.svg';
+import { ReactComponent as SkipBack } from '../assets/play-back.svg';
+import { ReactComponent as SkipForward } from '../assets/play-forward.svg';
 
 const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
   const [audioDuration, setAudioDuration] = useState(0);
