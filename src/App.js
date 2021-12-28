@@ -33,8 +33,12 @@ const App = () => {
     setSongIndex(index);
   };
 
+  const handelSpaceClick = e => {
+    if (e.key === ' ') setIsPlaying(isPlaying => !isPlaying);
+  };
+
   return (
-    <div className="container">
+    <div tabIndex={0} onKeyDown={handelSpaceClick} className="container">
       <Song currentSong={currentSong} />
       <Player
         currentSong={currentSong}

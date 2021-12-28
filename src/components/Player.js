@@ -12,11 +12,13 @@ const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
 
   useEffect(() => {
     // when switching to next song keep the audio playing only if the music was playing before switching
-    if (audioRef.current && isPlaying) {
-      audioRef.current.play();
-      setIsPlaying(true);
-    }
-  }, [currentSong, setIsPlaying, isPlaying]);
+    if (audioRef.current && isPlaying) audioRef.current.play();
+  }, [currentSong, isPlaying]);
+
+  useEffect(() => {
+    if (isPlaying) audioRef.current.play();
+    else audioRef.current.pause();
+  }, [isPlaying]);
 
   const handelSongOnPlay = () => {
     isPlaying ? audioRef.current.pause() : audioRef.current.play();

@@ -10,7 +10,7 @@ const Library = ({ songs, setSong }) => {
   };
 
   const renderSongs = songs.map(song => (
-    <LibrarySong key={Math.random()} onClick={onClickHandler} song={song} />
+    <LibrarySong key={song.id} onClick={onClickHandler} song={song} />
   ));
 
   return (
