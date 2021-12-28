@@ -17,7 +17,7 @@ const Library = ({ songs, setSong, isLibraryOpen }) => {
   ));
 
   return (
-    <div className={`library ${isLibraryOpen && 'active'}`}>
+    <div className={`library ${isLibraryOpen ? 'active' : ''}`}>
       <h2>Library</h2>
       <div className="library-songs">{renderSongs}</div>
     </div>

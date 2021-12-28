@@ -1,4 +1,8 @@
 @import './base';
-@import './player';
-@import './song';
-@import './library';
+
+@import '../songs/styles/player';
+@import '../songs/styles/song';
+@import '../songs/styles/library';
+@import '../songs/styles/playlist';
+
+@import '../shared/styles/header';

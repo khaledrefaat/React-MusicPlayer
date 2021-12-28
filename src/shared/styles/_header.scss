@@ -1,0 +1,126 @@
+.nav {
+  min-height: 10vh;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #999;
+  position: relative;
+
+  &__brand {
+    font-weight: 700;
+    text-transform: capitalize;
+    font-size: 2rem;
+  }
+
+  &__brand a {
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+  &__list {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    top: 9vh;
+    background-color: var(--color-primary);
+    left: 0;
+    right: 0;
+    z-index: 2;
+    transition: all 0.2s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  &__list.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  &__item {
+    margin: 0.5rem 0rem;
+    padding: 1rem 0;
+  }
+
+  &__link {
+    color: var(--color-white);
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--color-secondary);
+    }
+  }
+
+  &__icon {
+    cursor: pointer;
+    transition: all 0.2s;
+    backface-visibility: hidden;
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-white);
+
+    svg {
+      fill: var(--color-white);
+    }
+  }
+
+  @media only screen and (min-width: $bp-small) {
+    &__list {
+      display: flex;
+      list-style: none;
+      padding-right: 2rem;
+      flex-direction: row;
+      position: relative;
+      top: 0;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+
+    &__item {
+      margin: 0 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+
+    &__link {
+      color: var(--color-white);
+      text-decoration: none;
+      text-transform: capitalize;
+      font-size: 1.2rem;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--color-secondary);
+      }
+    }
+
+    &__icon {
+      display: none;
+    }
+  }
+
+  @media only screen and (min-width: $bp-medium) {
+    &__list {
+      padding-right: 3rem;
+    }
+
+    &__item {
+      margin: 0 1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    &__link {
+      font-size: 1.2rem;
+      transition: color 0.2s ease;
+    }
+  }
+}

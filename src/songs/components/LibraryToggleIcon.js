@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as MusicIcon } from '../assets/musical-notes.svg';
+import { ReactComponent as MusicIcon } from '../../assets/musical-notes.svg';
 
 const LibraryToggle = ({ setIsLibraryOpen }) => {
   return (

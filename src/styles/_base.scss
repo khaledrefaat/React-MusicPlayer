@@ -1,3 +1,22 @@
+:root {
+  --color-primary: #2980b9;
+  --color-primary-light: #83bce2;
+  --color-secondary: #2ecc71;
+  --color-secondary-light: #56e090;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-light-gray: #eee;
+  --color-medium-gray: #ccc;
+  --color-dark-gray: #aaa;
+}
+
+// break points
+$bp-largest: 75em; //1200px
+$bp-larg: 68.75em; // 1100px
+$bp-medium: 56.25em; // 900px
+$bp-small: 48em; //768px
+$bp-smallest: 37.5em; // 600px
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -93,4 +112,6 @@ h6 {
   outline: none;
   border: none;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }

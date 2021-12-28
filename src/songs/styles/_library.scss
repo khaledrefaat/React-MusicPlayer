@@ -39,11 +39,11 @@
   }
 
   &:hover {
-    background-color: #dedee1;
+    background-color: var(--color-primary-light);
   }
 }
 .library-song.active {
-  background-color: violet;
+  background-color: var(--color-secondary);
 }
 
 .song-description {
@@ -59,7 +59,7 @@
 .library-toggle {
   position: absolute;
   cursor: pointer;
-  top: 5%;
+  top: 13%;
   right: 10%;
   background-color: #fff;
   padding: 0.5rem 1rem;
@@ -84,7 +84,7 @@
   }
 
   &:hover svg {
-    fill: #fff;
+    fill: var(--color-primary);
   }
 
   &:active {
