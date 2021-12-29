@@ -5,6 +5,7 @@ import Player from '../components/Player';
 import data from '../../data';
 import Library from '../components/Library';
 import LibraryToggleIcon from '../components/LibraryToggleIcon';
+import Container from '../../shared/components/Container';
 
 const songs = data();
 
@@ -38,7 +39,7 @@ const PlayList = () => {
   };
 
   return (
-    <div tabIndex={0} onKeyDown={handelSpaceClick} className="playlist">
+    <Container tabIndex={0} onKeyDown={handelSpaceClick}>
       <Song currentSong={currentSong} />
       <Player
         currentSong={currentSong}
@@ -52,7 +53,7 @@ const PlayList = () => {
         songs={songs}
       />
       <LibraryToggleIcon setIsLibraryOpen={setIsLibraryOpen} />
-    </div>
+    </Container>
   );
 };
 

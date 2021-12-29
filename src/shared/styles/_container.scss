@@ -1,0 +1,13 @@
+.container {
+  flex: 1;
+  position: 'relative';
+  outline: none;
+  padding: 0 0.5rem;
+
+  @media only screen and (min-width: $bp-small) {
+    padding: 1rem 2rem;
+  }
+  @media only screen and (min-width: $bp-smallest) {
+    padding: 0.5rem 1rem;
+  }
+}
