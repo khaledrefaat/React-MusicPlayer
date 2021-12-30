@@ -1,21 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import data from '../../data';
 import SongItem from './SongItem';
 
 const songs = data();
 
-const SongList = () => {
+const SongList = ({ title }) => {
   return (
-    <div className="song-list">
-      {songs.map(song => (
-        <div>
-          <Link to={`/song/${song.id}`} key={song.id}>
-            <SongItem song={song} />
-          </Link>
-        </div>
-      ))}
+    <div>
+      <style>
+        {`
+          .songs-list-title {
+            text-align: center;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+          }
+        `}
+      </style>
+      {title && <h2 className="songs-list-title">{title}</h2>}
+      <div className="song-list">
+        {songs.map(song => (
+          <SongItem key={song.id} song={song} />
+        ))}
+      </div>
     </div>
   );
 };

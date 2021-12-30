@@ -1,0 +1,65 @@
+.user-list {
+  display: none;
+
+  @media only screen and (min-width: $bp-small) {
+    display: block;
+    width: 30%;
+    padding: 1rem 0.5rem;
+    border-left: 1px solid #eee;
+    overflow: scroll;
+
+    & > h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #646464;
+    }
+  }
+
+  @media only screen and (min-width: $bp-medium) {
+    width: 25%;
+  }
+
+  // 1350px
+  @media only screen and (min-width: 85.3125em) {
+    padding: 1rem;
+    width: 20%;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+.user {
+  display: flex;
+  // justify-content: space-evenly;
+  margin-bottom: 1rem;
+
+  &__img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 1rem;
+  }
+
+  @media only screen and (min-width: $bp-medium) {
+    &__img {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  @media only screen and (min-width: $bp-large) {
+    &__img {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+
+  h3,
+  h4 {
+    text-align: left;
+  }
+}

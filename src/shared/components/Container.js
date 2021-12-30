@@ -1,8 +1,11 @@
 import React from 'react';
 
-const Container = ({ children, ...props }) => {
+const Container = ({ children, direction, ...props }) => {
   return (
-    <div className="container" {...props}>
+    <div
+      className={`container ${direction === 'row' ? 'direction-row' : ''}`}
+      {...props}
+    >
       {children}
     </div>
   );
