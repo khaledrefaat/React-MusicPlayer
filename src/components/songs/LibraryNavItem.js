@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ItemContent from '../shared/ItemContent';
+
 const LibraryNavItem = ({ song, onClick }) => {
   return (
     <div
@@ -7,10 +9,11 @@ const LibraryNavItem = ({ song, onClick }) => {
       onClick={() => onClick(song)}
     >
       <img src={song.cover} alt={song.name} />
-      <div className="library-nav-item__description">
-        <h3>{song.name}</h3>
-        <h4>{song.artist}</h4>
-      </div>
+      <ItemContent
+        title={song.name}
+        description={song.artist}
+        className="library-nav-item__description"
+      />
     </div>
   );
 };

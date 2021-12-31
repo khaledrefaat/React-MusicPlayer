@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ItemContent = ({ title, description }) => {
+const ItemContent = ({ title, description, className }) => {
   return (
-    <div className="item-content">
+    <div className={`item-content ${className ? className : ''}`}>
       <h3>{title}</h3>
-      <h4>{description}</h4>
+      {description && <h4>{description}</h4>}
     </div>
   );
 };
