@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LibrarySong = ({ song, onClick }) => {
+const LibrarySongItem = ({ song, onClick }) => {
   return (
     <div
       className={`library-song ${song.active ? 'active' : ''}`}
@@ -15,4 +15,4 @@ const LibrarySong = ({ song, onClick }) => {
   );
 };
 
-export default LibrarySong;
+export default LibrarySongItem;

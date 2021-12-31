@@ -61,30 +61,32 @@
   cursor: pointer;
   top: 13%;
   right: 10%;
-  background-color: #fff;
+  background-color: transparent;
   padding: 0.5rem 1rem;
-  color: #000;
-  border: 2px solid #000;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
   display: flex;
   align-items: center;
   transition: all 0.2s ease;
   transform: translateY(0);
   font-style: italic;
+  font-weight: 700;
 
   svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
     margin-left: 5px;
+    fill: var(--color-primary);
     transition: fill 0.2s ease;
   }
 
   &:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-white);
   }
 
   &:hover svg {
-    fill: var(--color-primary);
+    fill: var(--color-secondary);
   }
 
   &:active {

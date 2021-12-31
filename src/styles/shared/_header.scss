@@ -111,6 +111,10 @@
       }
     }
 
+    &__link.active {
+      color: var(--color-secondary);
+    }
+
     &__icon {
       display: none;
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import LibrarySong from './LibrarySong';
+import LibrarySongItem from './LibrarySongItem';
 
 const Library = ({ songs, setSong, isLibraryOpen }) => {
   const onClickHandler = song => {
@@ -13,7 +13,7 @@ const Library = ({ songs, setSong, isLibraryOpen }) => {
   };
 
   const renderSongs = songs.map(song => (
-    <LibrarySong key={song.id} onClick={onClickHandler} song={song} />
+    <LibrarySongItem key={song.id} onClick={onClickHandler} song={song} />
   ));
 
   return (

@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './containers/Home';
+import PlayLists from './containers/PlayLists';
 
-import Header from './shared/components/navigation/Header';
-import PlayList from './songs/containers/PlayList';
+import Header from './components/navigation/Header';
+import PlayList from './containers/PlayList';
 
 import './styles/app.scss';
 
@@ -14,6 +15,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/playlists" element={<PlayLists />} />
           <Route path="/playlist/:id" element={<PlayList />} />
         </Routes>
       </main>

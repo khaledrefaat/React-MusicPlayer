@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Container from '../shared/components/Container';
-import SongList from '../songs/components/SongList';
-import UserList from '../user/components/UserList';
+import Container from '../components/shared/Container';
+import SongList from '../components/songs/SongList';
+import UserList from '../components/user/UserList';
 
 const Home = () => {
   return (
     <Container direction="row">
-      <SongList title="Songs You Might Like" />
+      <SongList title="songs you might like" />
       <UserList />
     </Container>
   );

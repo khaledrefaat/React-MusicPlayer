@@ -1,11 +1,11 @@
 @import './base';
 
-@import '../songs/styles/player';
-@import '../songs/styles/song';
-@import '../songs/styles/library';
+@import './songs/player';
+@import './songs/song';
+@import './songs/library';
 
-@import '../shared/styles/header';
-@import '../shared//styles/container';
-@import '../shared/styles/item-content';
+@import './shared/header';
+@import './shared/container';
+@import './shared/item-content';
 
-@import '../user/styles/user';
+@import './user/user';

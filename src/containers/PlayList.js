@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import Song from '../components/Song';
-import Player from '../components/Player';
-import data from '../../data';
-import Library from '../components/Library';
-import LibraryToggleIcon from '../components/LibraryToggleIcon';
-import Container from '../../shared/components/Container';
+import Song from '../components/songs/Song';
+import Player from '../components/songs/Player';
+import data from '../data';
+import LibraryNav from '../components/songs/LibraryNav';
+import LibraryToggleIcon from '../components/songs/LibraryToggleIcon';
+import Container from '../components/shared/Container';
 
 const songs = data();
 
@@ -47,7 +47,7 @@ const PlayList = () => {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
       />
-      <Library
+      <LibraryNav
         isLibraryOpen={isLibraryOpen}
         setSong={handelLibrarySong}
         songs={songs}

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import ItemContent from '../../shared/components/ItemContent';
+import ItemContent from '../shared/ItemContent';
 
 const UserItem = ({ user }) => {
   return (

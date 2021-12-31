@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavLinks from './NavLinks';
 
-import { ReactComponent as MenuIcon } from '../../../assets/menu.svg';
-import { ReactComponent as CloseMenuIcon } from '../../../assets/close.svg';
+import { ReactComponent as MenuIcon } from '../../assets/menu.svg';
+import { ReactComponent as CloseMenuIcon } from '../../assets/close.svg';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
