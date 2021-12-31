@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ItemContent from '../shared/ItemContent';
 
-const SongItem = ({ song }) => {
+const SongItem = ({ item, link }) => {
   return (
-    <div className="song-item">
-      <Link to={`/song/${song.id}`}>
-        <div className="song-item__img">
-          <img src={song.cover} alt={song.name} />
+    <div className="item-item">
+      <Link to={link}>
+        <div className="item-item__img">
+          <img src={item.cover} alt={item.name} />
         </div>
-        <ItemContent title={song.name} description={song.artist} />
+        <ItemContent title={item.name} description={item.artist} />
       </Link>
     </div>
   );

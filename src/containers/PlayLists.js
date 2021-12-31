@@ -2,19 +2,27 @@ import React from 'react';
 
 import Container from '../components/shared/Container';
 import DUMMY_PLAYLISTS from '../DUMMY_PLAYLISTS';
-import PlayListItem from '../components/songs/PlayListItem';
+import SongItem from '../components/songs/SongItem';
 
 import UserList from '../components/user/UserList';
+import PagesTitle from '../components/shared/PagesTitle';
+import GridContainer from '../components/shared/GridContainer';
 
 const PlayLists = () => {
   return (
     <Container direction="row">
-      <div className="playlists-container">
-        <h2>some play lists you might like</h2>
+      <GridContainer>
+        <PagesTitle title="some playlists you might like" />
         {DUMMY_PLAYLISTS.map(playlist => {
-          return <PlayListItem playlist={playlist} key={Math.random()} />;
+          return (
+            <SongItem
+              item={playlist}
+              link={`/playlist/${playlist.id}`}
+              key={playlist.id}
+            />
+          );
         })}
-      </div>
+      </GridContainer>
       <UserList />
     </Container>
   );

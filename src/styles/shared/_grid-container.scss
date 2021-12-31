@@ -1,16 +1,10 @@
-.playlists-container {
+.grid-container {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 2rem;
   margin-top: 1rem;
   padding: 0 1rem;
-
-  h2 {
-    grid-column: 1/-1;
-    text-align: center;
-    text-transform: capitalize;
-  }
 
   @media only screen and (min-width: $bp-smallest) {
     grid-template-columns: repeat(3, 1fr);

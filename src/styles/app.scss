@@ -3,12 +3,11 @@
 @import './shared/header';
 @import './shared/container';
 @import './shared/item-content';
+@import './shared/page-title';
+@import './shared/grid-container';
 
 @import './songs/player';
 @import './songs/song';
 @import './songs/library';
-@import './songs/playlist';
 
 @import './user/user';
-
-@import './containers/_playLists';
