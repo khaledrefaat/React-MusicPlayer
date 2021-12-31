@@ -16,7 +16,7 @@ const Header = () => {
       <div className="nav__icon" onClick={() => setIsOpen(isOpen => !isOpen)}>
         {isOpen ? <CloseMenuIcon /> : <MenuIcon />}
       </div>
-      <NavLinks isOpen={isOpen} />
+      <NavLinks setIsOpen={setIsOpen} isOpen={isOpen} />
     </nav>
   );
 };

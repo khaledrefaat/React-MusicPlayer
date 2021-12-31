@@ -4,7 +4,7 @@ import ItemContent from '../shared/ItemContent';
 
 const SongItem = ({ item, link }) => {
   return (
-    <div className="item-item">
+    <div className="song-item">
       <Link to={link}>
         <div className="item-item__img">
           <img src={item.cover} alt={item.name} />

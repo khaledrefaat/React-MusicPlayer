@@ -1,49 +1,27 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NavLinks = ({ isOpen }) => {
+const NavLinks = ({ isOpen, setIsOpen }) => {
+  const NavComponent = (to, children) => (
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        isActive ? `nav__link active` : 'nav__link'
+      }
+      onClick={() => setIsOpen(isOpen => !isOpen)}
+    >
+      {children}
+    </NavLink>
+  );
+
   return (
     <ul className={`nav__list ${isOpen ? 'active' : ''}`}>
-      <li className="nav__item active">
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? `nav__link active` : 'nav__link'
-          }
-          to="/"
-        >
-          home
-        </NavLink>
-      </li>
+      <li className="nav__item active">{NavComponent('/', 'home')}</li>
+      <li className="nav__item">{NavComponent('/playlists', 'Playlists')}</li>
       <li className="nav__item">
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? `nav__link active` : 'nav__link'
-          }
-          to="/playlists"
-        >
-          Playlists
-        </NavLink>
+        {NavComponent('/user/library', 'Your Library')}
       </li>
-      <li className="nav__item">
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? `nav__link active` : 'nav__link'
-          }
-          to="/user/library"
-        >
-          Your Library
-        </NavLink>
-      </li>
-      <li className="nav__item">
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? `nav__link active` : 'nav__link'
-          }
-          to="/playlists/new"
-        >
-          Upload
-        </NavLink>
-      </li>
+      <li className="nav__item">{NavComponent('/playlists/new', 'Upload')}</li>
     </ul>
   );
 };
