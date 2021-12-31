@@ -1,5 +1,5 @@
 import React from 'react';
-import LibrarySongItem from './LibrarySongItem';
+import LibrarySongItem from './LibraryNavItem';
 
 const LibraryList = ({ list, img, title }) => {
   console.log(list);

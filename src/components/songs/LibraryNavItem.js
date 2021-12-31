@@ -1,13 +1,13 @@
 import React from 'react';
 
-const LibrarySongItem = ({ song, onClick }) => {
+const LibraryNavItem = ({ song, onClick }) => {
   return (
     <div
-      className={`library-song ${song.active ? 'active' : ''}`}
+      className={`library-nav-item ${song.active ? 'active' : ''}`}
       onClick={() => onClick(song)}
     >
       <img src={song.cover} alt={song.name} />
-      <div className="song-description">
+      <div className="library-nav-item__description">
         <h3>{song.name}</h3>
         <h4>{song.artist}</h4>
       </div>
@@ -15,4 +15,4 @@ const LibrarySongItem = ({ song, onClick }) => {
   );
 };
 
-export default LibrarySongItem;
+export default LibraryNavItem;

@@ -1,4 +1,4 @@
-.library {
+.library-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -20,13 +20,14 @@
   }
 }
 
-.library.active {
+.library-nav.active {
   transform: translateX(0);
   opacity: 1;
   pointer-events: all;
 }
 
-.library-song {
+// library nav-item styles
+.library-nav-item {
   display: flex;
   padding: 1rem 2rem;
   align-items: flex-start;
@@ -41,21 +42,22 @@
   &:hover {
     background-color: var(--color-primary-light);
   }
+
+  &__description {
+    padding-left: 1rem;
+    h3 {
+      font-size: 1rem;
+    }
+    h4 {
+      font-size: 0.7rem;
+    }
+  }
 }
-.library-song.active {
+.library-nav-item.active {
   background-color: var(--color-secondary);
 }
 
-.song-description {
-  padding-left: 1rem;
-  h3 {
-    font-size: 1rem;
-  }
-  h4 {
-    font-size: 0.7rem;
-  }
-}
-
+// library toggle button styles
 .library-toggle {
   position: absolute;
   cursor: pointer;

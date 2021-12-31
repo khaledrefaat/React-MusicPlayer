@@ -1,7 +1,7 @@
 import React from 'react';
-import LibrarySongItem from './LibrarySongItem';
+import LibraryNavItem from './LibraryNavItem';
 
-const Library = ({ songs, setSong, isLibraryOpen }) => {
+const LibraryNav = ({ songs, setSong, isLibraryOpen }) => {
   const onClickHandler = song => {
     songs.forEach(song => (song.active = false));
     song.active = true;
@@ -13,15 +13,15 @@ const Library = ({ songs, setSong, isLibraryOpen }) => {
   };
 
   const renderSongs = songs.map(song => (
-    <LibrarySongItem key={song.id} onClick={onClickHandler} song={song} />
+    <LibraryNavItem key={song.id} onClick={onClickHandler} song={song} />
   ));
 
   return (
-    <div className={`library ${isLibraryOpen ? 'active' : ''}`}>
+    <div className={`library-nav ${isLibraryOpen ? 'active' : ''}`}>
       <h2>Library</h2>
       <div className="library-songs">{renderSongs}</div>
     </div>
   );
 };
 
-export default Library;
+export default LibraryNav;
