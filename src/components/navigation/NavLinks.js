@@ -21,7 +21,7 @@ const NavLinks = ({ isOpen, setIsOpen }) => {
       <li className="nav__item">
         {NavComponent('/user/library', 'Your Library')}
       </li>
-      <li className="nav__item">{NavComponent('/playlists/new', 'Upload')}</li>
+      <li className="nav__item">{NavComponent('/playlist/new', 'Upload')}</li>
     </ul>
   );
 };

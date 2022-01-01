@@ -25,3 +25,24 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+.full-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 2rem;
+  margin-top: 1rem;
+  padding: 0 1rem;
+  row-gap: 1rem;
+  height: fit-content;
+
+  @media only screen and (min-width: $bp-smallest) {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 1.5rem;
+  }
+
+  @media only screen and (min-width: $bp-medium) {
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 2rem;
+  }
+}
