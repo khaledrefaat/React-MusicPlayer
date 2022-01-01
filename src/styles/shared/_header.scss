@@ -92,6 +92,7 @@
       opacity: 1;
       visibility: visible;
       pointer-events: all;
+      z-index: 0;
     }
 
     &__item {

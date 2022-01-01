@@ -1,19 +1,9 @@
 import React from 'react';
 import LibraryNavItem from './LibraryNavItem';
 
-const LibraryNav = ({ songs, setSong, isLibraryOpen }) => {
-  const onClickHandler = song => {
-    songs.forEach(song => (song.active = false));
-    song.active = true;
-
-    const songIndex = songs.findIndex(
-      currentSong => currentSong.id === song.id
-    );
-    setSong(songIndex);
-  };
-
+const LibraryNav = ({ songs, isLibraryOpen, onItemClick }) => {
   const renderSongs = songs.map(song => (
-    <LibraryNavItem key={song.id} onClick={onClickHandler} song={song} />
+    <LibraryNavItem key={song.id} onClick={onItemClick} song={song} />
   ));
 
   return (
