@@ -1,29 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Container from '../components/shared/Container';
-import DUMMY_PLAYLISTS from '../DUMMY_PLAYLISTS';
 import SongItem from '../components/songs/SongItem';
 
 import UserList from '../components/user/UserList';
 import PagesTitle from '../components/shared/PagesTitle';
 import GridContainer from '../components/shared/GridContainer';
+import useHttpClient from '../components/hooks/http-hook';
 
 const PlayLists = () => {
+  const [playlists, setPlaylsits] = useState();
+  const [users, setUsers] = useState();
+  const { sendRequest, isLoading } = useHttpClient();
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      try {
+        const playlistsData = await sendRequest(
+          'http://localhost:9000/playlists'
+        );
+        const usersData = await sendRequest('http://localhost:9000/users');
+
+        setPlaylsits(playlistsData);
+        setUsers(usersData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchPlaylists();
+  }, [sendRequest]);
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <Container direction="row">
-      <GridContainer>
-        <PagesTitle title="some playlists you might like" />
-        {DUMMY_PLAYLISTS.map(playlist => {
-          return (
-            <SongItem
-              item={playlist}
-              link={`/playlist/${playlist.id}`}
-              key={playlist.id}
-            />
-          );
-        })}
-      </GridContainer>
-      <UserList />
+      {playlists && (
+        <GridContainer>
+          <PagesTitle title="some playlists you might like" />
+          {playlists.map(({ playlistName, _id, playlistCover }) => {
+            return (
+              <SongItem
+                name={playlistName}
+                cover={playlistCover}
+                link={`/playlist/${_id}`}
+                key={_id}
+              />
+            );
+          })}
+        </GridContainer>
+      )}
+      {users && <UserList users={users} />}
     </Container>
   );
 };
