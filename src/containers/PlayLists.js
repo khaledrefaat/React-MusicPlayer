@@ -7,6 +7,7 @@ import UserList from '../components/user/UserList';
 import PagesTitle from '../components/shared/PagesTitle';
 import GridContainer from '../components/shared/GridContainer';
 import useHttpClient from '../components/hooks/http-hook';
+import Modal from '../components/shared/Modal';
 
 const PlayLists = () => {
   const [playlists, setPlaylsits] = useState();
@@ -30,7 +31,7 @@ const PlayLists = () => {
     fetchPlaylists();
   }, [sendRequest]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Modal spinner={true} />;
 
   return (
     <Container direction="row">

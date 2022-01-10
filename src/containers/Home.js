@@ -6,6 +6,7 @@ import GridContainer from '../components/shared/GridContainer';
 import SongItem from '../components/songs/SongItem';
 import PagesTitle from '../components/shared/PagesTitle';
 import useHttpClient from '../components/hooks/http-hook';
+import Modal from '../components/shared/Modal';
 
 const Home = () => {
   const [songsData, setSongsData] = useState();
@@ -26,7 +27,7 @@ const Home = () => {
     fetch();
   }, [sendRequest]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Modal spinner={true} />;
 
   return (
     <Container direction="row">
