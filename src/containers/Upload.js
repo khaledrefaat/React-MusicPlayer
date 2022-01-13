@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '../components/shared/Container';
 import Form from '../components/shared/Form';
-import FormButton from '../components/shared/FormButton';
+import CustomButton from '../components/shared/CustomButton';
 import Input from '../components/shared/Input';
 
 const Upload = () => {
@@ -11,7 +11,7 @@ const Upload = () => {
         <Input placeholder="Name" required />
         <Input placeholder="Artist Name" required />
         <Input placeholder="Cover" required />
-        <FormButton>Submit</FormButton>
+        <CustomButton>Submit</CustomButton>
       </Form>
     </Container>
   );

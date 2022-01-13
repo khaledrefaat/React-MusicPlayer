@@ -3,26 +3,45 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40%;
+  width: 31.25rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.auth-form {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 // input styles
 
 .input-group {
   position: relative;
-  margin-bottom: 45px;
-  width: 90%;
+  width: 100%;
+  margin-bottom: 1rem;
 
   input {
     font-size: 18px;
-    padding: 10px 10px 10px 5px;
+    padding: 8px 8px 8px 5px;
     display: block;
     width: 100%;
-    border: none;
-    border-bottom: 1px solid #757575;
+    border: 1px solid #757575;
+    border-radius: 4px;
+    outline: none;
   }
   input:focus {
     outline: none;
+  }
+
+  input::placeholder {
+    text-transform: capitalize;
   }
 
   &__bar {
@@ -53,101 +72,5 @@
   input:focus ~ &__bar:before,
   input:focus ~ &__bar:after {
     width: 50%;
-  }
-}
-
-// button styles
-
-.form-button {
-  width: 130px;
-  height: 40px;
-  color: #fff;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  outline: none;
-  background: linear-gradient(
-    0deg,
-    rgb(39, 136, 201) 100%,
-    var(--color-primary) 0%
-  );
-  padding: 0;
-  border: none;
-  display: inline-block;
-  transform: translateY(0);
-
-  &:active {
-    transform: translateY(2px);
-  }
-
-  &:before,
-  &:after {
-    position: absolute;
-    content: '';
-    right: 0;
-    top: 0;
-    background: var(--color-primary);
-    transition: all 0.3s ease;
-  }
-  &:before {
-    height: 0%;
-    width: 2px;
-  }
-  &:after {
-    width: 0%;
-    height: 2px;
-  }
-  &:hover {
-    background: transparent;
-    box-shadow: none;
-  }
-  &:hover:before {
-    height: 100%;
-  }
-  &:hover:after {
-    width: 100%;
-  }
-
-  //   span style
-
-  & span {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    text-transform: capitalize;
-  }
-
-  & span:hover {
-    color: var(--color-primary);
-  }
-  & span:before,
-  & span:after {
-    position: absolute;
-    content: '';
-    left: 0;
-    bottom: 0;
-    background: var(--color-primary);
-    transition: all 0.3s ease;
-  }
-  & span:before {
-    width: 2px;
-    height: 0%;
-  }
-  & span:after {
-    width: 0%;
-    height: 2px;
-  }
-  & span:hover:before {
-    height: 100%;
-  }
-  & span:hover:after {
-    width: 100%;
   }
 }

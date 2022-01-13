@@ -1,0 +1,47 @@
+.form-button {
+  display: block;
+  background-color: var(--color-primary-dark);
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0.5rem 2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  &.disable {
+    background-color: var(--color-medium-gray);
+    cursor: not-allowed;
+  }
+}
+
+.member-button {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  outline: none;
+  width: fit-content;
+  font-weight: bold;
+  color: var(--color-primary-dark);
+  display: inline-block;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+}
+
+.file-button {
+  background-color: var(--color-secondary);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

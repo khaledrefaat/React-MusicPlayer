@@ -7,9 +7,13 @@
 @import './shared/grid-container';
 @import './shared/form';
 @import './shared/modal';
+@import './shared/file-upload';
+@import './shared/custom-button';
 
 @import './songs/player';
 @import './songs/song';
 @import './songs/library';
 
 @import './user/user';
+
+@import './containers/auth';

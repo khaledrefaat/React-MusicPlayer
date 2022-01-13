@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Form = ({ onSubmit, children, ...props }) => {
+const Form = ({ onSubmit, className, children, ...props }) => {
   return (
-    <form className="form" onSubmit={onSubmit} {...props}>
+    <form
+      className={` ${className ? className : 'form'}`}
+      onSubmit={onSubmit}
+      {...props}
+    >
       {children}
     </form>
   );
