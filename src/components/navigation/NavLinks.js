@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { AuthContext } from '../context/auth-context';
+
 const NavLinks = ({ isOpen, setIsOpen }) => {
+  const authenticate = useContext(AuthContext);
+
   const NavComponent = (to, children) => (
     <NavLink
       to={to}
@@ -18,10 +22,18 @@ const NavLinks = ({ isOpen, setIsOpen }) => {
     <ul className={`nav__list ${isOpen ? 'active' : ''}`}>
       <li className="nav__item active">{NavComponent('/', 'home')}</li>
       <li className="nav__item">{NavComponent('/playlists', 'Playlists')}</li>
-      <li className="nav__item">
-        {NavComponent('/user/library', 'Your Library')}
-      </li>
-      <li className="nav__item">{NavComponent('/playlist/new', 'Upload')}</li>
+      {authenticate.isLoggedIn ? (
+        <>
+          <li className="nav__item">
+            {NavComponent('/user/library', 'Your Library')}
+          </li>
+          <li className="nav__item">
+            {NavComponent('/playlists/new', 'Upload')}
+          </li>
+        </>
+      ) : (
+        <li className="nav__item">{NavComponent('/user/auth', 'Login')}</li>
+      )}
     </ul>
   );
 };

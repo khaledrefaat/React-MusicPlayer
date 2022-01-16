@@ -16,8 +16,8 @@ const Home = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const songsData = await sendRequest('http://localhost:9000/songs');
-        const usersData = await sendRequest('http://localhost:9000/users');
+        const songsData = await sendRequest('http://localhost:9000/api/songs');
+        const usersData = await sendRequest('http://localhost:9000/api/users');
         setSongsData(songsData);
         setUsers(usersData);
       } catch (err) {

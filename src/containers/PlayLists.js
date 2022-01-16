@@ -18,9 +18,9 @@ const PlayLists = () => {
     const fetchPlaylists = async () => {
       try {
         const playlistsData = await sendRequest(
-          'http://localhost:9000/playlists'
+          'http://localhost:9000/api/playlists'
         );
-        const usersData = await sendRequest('http://localhost:9000/users');
+        const usersData = await sendRequest('http://localhost:9000/api/users');
 
         setPlaylsits(playlistsData);
         setUsers(usersData);

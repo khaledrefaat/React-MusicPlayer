@@ -8,9 +8,9 @@ const Upload = () => {
   return (
     <Container>
       <Form>
-        <Input placeholder="Name" required />
+        {/* <Input placeholder="Name" required />
         <Input placeholder="Artist Name" required />
-        <Input placeholder="Cover" required />
+        <Input placeholder="Cover" required /> */}
         <CustomButton>Submit</CustomButton>
       </Form>
     </Container>
