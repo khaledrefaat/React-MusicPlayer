@@ -10,6 +10,7 @@
 }
 
 .auth-form {
+  z-index: 3;
   position: relative;
   width: 100%;
   padding: 1rem;
@@ -56,7 +57,7 @@
     width: 0;
     bottom: 0;
     position: absolute;
-    background: var(--color-primary);
+    background-color: var(--color-primary);
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
@@ -72,5 +73,17 @@
   input:focus ~ &__bar:before,
   input:focus ~ &__bar:after {
     width: 50%;
+  }
+
+  &.error &__bar::after,
+  &.error &__bar::before {
+    transition: none;
+    background-color: var(--color-error);
+    width: 50%;
+  }
+
+  p {
+    color: var(--color-error);
+    height: 10px;
   }
 }

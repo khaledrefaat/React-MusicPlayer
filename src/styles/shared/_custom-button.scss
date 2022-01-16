@@ -25,6 +25,10 @@
     background-color: var(--color-medium-gray);
     cursor: not-allowed;
   }
+
+  &.disable:active {
+    transform: translateY(0);
+  }
 }
 
 .member-button {

@@ -1,8 +1,8 @@
 import React from 'react';
 import Container from '../components/shared/Container';
-import Form from '../components/shared/Form';
+import Form from '../components/FormElements/Form';
 import CustomButton from '../components/shared/CustomButton';
-import Input from '../components/shared/Input';
+import Input from '../components/FormElements/Input';
 
 const Upload = () => {
   return (
