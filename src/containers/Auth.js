@@ -3,7 +3,7 @@ import Form from '../components/FormElements/Form';
 import CustomButton from '../components/shared/CustomButton';
 import Input from '../components/FormElements/Input';
 
-import svg from '../assets/happy_music.svg';
+import svg from '../assets/Alone.svg';
 import BackgroundPattern from '../components/shared/BackgroundPattern';
 
 import { useForm } from '../components/hooks/form-hook';
