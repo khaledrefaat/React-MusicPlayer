@@ -29,5 +29,13 @@
     @media only screen and (min-width: $bp-largest) {
       width: 40%;
     }
+    & > p {
+      color: var(--color-error);
+      position: absolute;
+      top: 5px;
+      font-weight: bold;
+      width: 100%;
+      text-align: center;
+    }
   }
 }

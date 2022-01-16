@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Form from '../components/FormElements/Form';
 import CustomButton from '../components/shared/CustomButton';
 import Input from '../components/FormElements/Input';
@@ -6,7 +6,10 @@ import Input from '../components/FormElements/Input';
 import svg from '../assets/Alone.svg';
 import BackgroundPattern from '../components/shared/BackgroundPattern';
 
+import useHttpClient from '../components/hooks/http-hook';
+import { AuthContext } from '../components/context/auth-context';
 import { useForm } from '../components/hooks/form-hook';
+
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_REQUIRE,
@@ -27,8 +30,57 @@ const Auth = () => {
     },
     false
   );
+  const { error, sendRequest, clearError } = useHttpClient();
+  const [isLoginMode, setIsLoginMode] = useState(true);
+
+  const authenticate = useContext(AuthContext);
+
+  const submitHandler = async e => {
+    e.preventDefault();
+
+    if (isLoginMode) {
+      try {
+        const res = await sendRequest(
+          'http://localhost:9000/api/users/login',
+          'POST',
+          JSON.stringify({
+            email: formState.inputs.email.value,
+            password: formState.inputs.password.value,
+          }),
+          {
+            'Content-Type': 'application/json',
+          }
+        );
+        authenticate.login(res.userId, res.token);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      try {
+        const res = await sendRequest(
+          'http://localhost:9000/api/users/signup',
+          'POST',
+          JSON.stringify({
+            username: formState.inputs.name.value,
+            email: formState.inputs.email.value,
+            password: formState.inputs.password.value,
+            passwordConfirmation: formState.inputs.passwordConfirmation.value,
+          }),
+          {
+            'Content-Type': 'application/json',
+          }
+        );
+        authenticate.login(res.userId, res.token);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+  console.log(error);
 
   const switchModeHandler = () => {
+    clearError();
     if (!isLoginMode) {
       setFormData(
         {
@@ -58,12 +110,11 @@ const Auth = () => {
     setIsLoginMode(isLoginMode => !isLoginMode);
   };
 
-  const [isLoginMode, setIsLoginMode] = useState(true);
-
   return (
     <BackgroundPattern className="auth">
       <div className="auth__card" style={{ backgroundImage: `url(${svg})` }}>
-        <Form className="auth-form">
+        {error && <p>{error}</p>}
+        <Form onSubmit={submitHandler} className="auth-form">
           {!isLoginMode && (
             <Input
               placeholder="name"
