@@ -22,25 +22,31 @@ import useAuth from './components/hooks/auth-hook';
 const App = () => {
   const { token, userId, login, logout } = useAuth();
 
-  const routes = () =>
-    token ? (
+  const routes = () => {
+    return token !== null ? (
       <>
-        <Route path="/" element={<Home />} />
-        <Route exact path="/playlists" element={<PlayLists />} />
-        <Route exact path="/playlist/:id" element={<PlayList />} />
-        <Route exact path="/user/library" element={<Library />} />
-        <Route exact path="/playlists/new" element={<Upload />} />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route index element={<Home />} />
+        <Route path="user/:userId" element={<Library />} />
+        <Route path="user/:userId/library" element={<Library />} />
+        <Route path="playlists" element={<PlayLists />} />
+        <Route path="playlist/new" element={<Upload />} />
+        <Route path="playlist/:id" element={<PlayList />} />
+        {token !== undefined && (
+          <Route path="*" element={<Navigate to="/" />} />
+        )}
       </>
     ) : (
       <>
-        <Route path="/" element={<Home />} />
-        <Route exact path="/playlists" element={<PlayLists />} />
-        <Route exact path="/playlist/:id" element={<PlayList />} />
-        <Route exact path="/user/auth" element={<Auth />} />
-        <Route path="*" element={<Navigate to="/user/auth" />} />
+        <Route index element={<Home />} />
+        <Route path="playlists" element={<PlayLists />} />
+        <Route path="playlist/:id" element={<PlayList />} />
+        <Route path="user/auth" element={<Auth />} />
+        {token !== undefined && (
+          <Route path="*" element={<Navigate to="/user/auth" />} />
+        )}
       </>
     );
+  };
 
   return (
     <AuthContext.Provider

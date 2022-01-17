@@ -11,7 +11,6 @@ import Modal from '../components/shared/Modal';
 
 const PlayLists = () => {
   const [playlists, setPlaylsits] = useState();
-  const [users, setUsers] = useState();
   const { sendRequest, isLoading } = useHttpClient();
 
   useEffect(() => {
@@ -20,10 +19,8 @@ const PlayLists = () => {
         const playlistsData = await sendRequest(
           'http://localhost:9000/api/playlists'
         );
-        const usersData = await sendRequest('http://localhost:9000/api/users');
 
         setPlaylsits(playlistsData);
-        setUsers(usersData);
       } catch (err) {
         console.log(err);
       }
@@ -50,7 +47,7 @@ const PlayLists = () => {
           })}
         </GridContainer>
       )}
-      {users && <UserList users={users} />}
+      <UserList />
     </Container>
   );
 };

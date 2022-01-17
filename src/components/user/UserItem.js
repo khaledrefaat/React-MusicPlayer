@@ -3,7 +3,7 @@ import ItemContent from '../shared/ItemContent';
 
 const UserItem = ({ user }) => {
   return (
-    <Link to={`/user/${user._id}`}>
+    <Link to={`user/${user._id}`}>
       <div className="user">
         <div
           className="user__img"

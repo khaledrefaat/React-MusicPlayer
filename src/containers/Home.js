@@ -10,16 +10,13 @@ import Modal from '../components/shared/Modal';
 
 const Home = () => {
   const [songsData, setSongsData] = useState();
-  const [users, setUsers] = useState();
   const { sendRequest, isLoading } = useHttpClient();
 
   useEffect(() => {
     const fetch = async () => {
       try {
         const songsData = await sendRequest('http://localhost:9000/api/songs');
-        const usersData = await sendRequest('http://localhost:9000/api/users');
         setSongsData(songsData);
-        setUsers(usersData);
       } catch (err) {
         console.log(err);
       }
@@ -45,7 +42,7 @@ const Home = () => {
           ))}
         </GridContainer>
       )}
-      {users && <UserList users={users} />}
+      <UserList />
     </Container>
   );
 };

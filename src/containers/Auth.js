@@ -77,8 +77,6 @@ const Auth = () => {
     }
   };
 
-  console.log(error);
-
   const switchModeHandler = () => {
     clearError();
     if (!isLoginMode) {

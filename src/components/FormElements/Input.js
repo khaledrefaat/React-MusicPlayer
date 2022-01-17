@@ -51,7 +51,7 @@ const Input = ({
       }`}
     >
       <input onChange={changeHandler} onBlur={onTouch} {...restProps} />
-      <span class="input-group__bar"></span>
+      <span className="input-group__bar"></span>
       <p>{!inputState.isValid && inputState.isTouched && errorText}</p>
     </div>
   );

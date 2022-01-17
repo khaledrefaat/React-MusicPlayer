@@ -8,7 +8,6 @@ const FormButton = ({
   className,
   ...props
 }) => {
-  console.log(memberButton);
   return (
     <button
       {...props}

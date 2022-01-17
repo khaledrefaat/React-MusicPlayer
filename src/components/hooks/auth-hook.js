@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect } from 'react';
 let logoutTimer;
 
 const useAuth = () => {
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState();
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(false);
 
@@ -43,8 +43,10 @@ const useAuth = () => {
         storedData.token,
         new Date(storedData.expirationDate)
       );
+    } else {
+      logout();
     }
-  }, [login]);
+  }, [login, logout]);
 
   useEffect(() => {
     if (token && tokenExpirationDate) {

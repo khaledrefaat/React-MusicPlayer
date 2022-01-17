@@ -6,9 +6,9 @@ import { AuthContext } from '../context/auth-context';
 const NavLinks = ({ isOpen, setIsOpen }) => {
   const authenticate = useContext(AuthContext);
 
-  const NavComponent = (to, children) => (
+  const NavComponent = (path, children) => (
     <NavLink
-      to={to}
+      to={path}
       className={({ isActive }) =>
         isActive ? `nav__link active` : 'nav__link'
       }
@@ -25,10 +25,23 @@ const NavLinks = ({ isOpen, setIsOpen }) => {
       {authenticate.isLoggedIn ? (
         <>
           <li className="nav__item">
-            {NavComponent('/user/library', 'Your Library')}
+            {
+              NavComponent(
+                `/user/${authenticate.userId}/library`,
+                'Your Library'
+              )
+
+              //       { <NavLink className={({ isActive }) =>
+              //   isActive &&  ? `nav__link active` : 'nav__link'
+              // }
+              // onClick={() => setIsOpen(isOpen => !isOpen)} to={`/user/${authenticate.userId}/library` }>Your Library</NavLink> }
+            }
           </li>
           <li className="nav__item">
-            {NavComponent('/playlists/new', 'Upload')}
+            {NavComponent('/playlist/new', 'Upload')}
+          </li>
+          <li className="nav__item">
+            <button onClick={() => authenticate.logout()}> Logout </button>
           </li>
         </>
       ) : (
