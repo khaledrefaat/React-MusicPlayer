@@ -26,7 +26,7 @@ const App = () => {
     return token !== null ? (
       <>
         <Route index element={<Home />} />
-        <Route path="user/:userId" element={<Library />} />
+        <Route path="user/profile/:userId" element={<Library />} />
         <Route path="user/:userId/library" element={<Library />} />
         <Route path="playlists" element={<PlayLists />} />
         <Route path="playlist/new" element={<Upload />} />

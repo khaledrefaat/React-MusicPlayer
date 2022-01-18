@@ -15,6 +15,7 @@ import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
 } from '../components/util/validation';
+import { Navigate } from 'react-router-dom';
 
 const Auth = () => {
   const [formState, inputHandler, setFormData] = useForm(
