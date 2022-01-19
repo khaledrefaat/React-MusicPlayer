@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Container from '../components/shared/Container';
@@ -9,25 +9,32 @@ import GridContainer from '../components/shared/GridContainer';
 import useHttpClient from '../components/hooks/http-hook';
 import Modal from '../components/shared/Modal';
 
+import { AuthContext } from '../components/context/auth-context';
+
 const Library = () => {
   const { isLoading, error, sendRequest } = useHttpClient();
   const [playLists, setPlaylists] = useState();
+  const { userId } = useContext(AuthContext);
 
-  const { userId } = useParams();
+  const paramsUserId = useParams();
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await sendRequest(
-          'http://localhost:9000/api/playlists/user/' + userId
-        );
-        setPlaylists(res);
+        if (paramsUserId.userId || userId) {
+          const res = await sendRequest(
+            `http://localhost:9000/api/playlists/user/${
+              paramsUserId.userId || userId
+            }`
+          );
+          setPlaylists(res);
+        }
       } catch (err) {
         console.log(err);
       }
     }
     fetchData();
-  }, [sendRequest, userId, setPlaylists]);
+  }, [sendRequest, userId, setPlaylists, paramsUserId]);
 
   if (isLoading) return <Modal spinner />;
 

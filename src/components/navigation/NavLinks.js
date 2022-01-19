@@ -26,10 +26,7 @@ const NavLinks = ({ isOpen, setIsOpen }) => {
         <>
           <li className="nav__item">
             {
-              NavComponent(
-                `/user/${authenticate.userId}/library`,
-                'Your Library'
-              )
+              NavComponent(`/library`, 'Your Library')
 
               //       { <NavLink className={({ isActive }) =>
               //   isActive &&  ? `nav__link active` : 'nav__link'
