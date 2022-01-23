@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { AuthContext } from '../context/auth-context';
+import { useSelector, useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth/auth-slice';
 
 const NavLinks = ({ isOpen, setIsOpen }) => {
-  const authenticate = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
   const NavComponent = (path, children) => (
     <NavLink
@@ -22,23 +24,16 @@ const NavLinks = ({ isOpen, setIsOpen }) => {
     <ul className={`nav__list ${isOpen ? 'active' : ''}`}>
       <li className="nav__item active">{NavComponent('/', 'home')}</li>
       <li className="nav__item">{NavComponent('/playlists', 'Playlists')}</li>
-      {authenticate.isLoggedIn ? (
+      {isLoggedIn ? (
         <>
-          <li className="nav__item">
-            {
-              NavComponent(`/library`, 'Your Library')
-
-              //       { <NavLink className={({ isActive }) =>
-              //   isActive &&  ? `nav__link active` : 'nav__link'
-              // }
-              // onClick={() => setIsOpen(isOpen => !isOpen)} to={`/user/${authenticate.userId}/library` }>Your Library</NavLink> }
-            }
-          </li>
           <li className="nav__item">
             {NavComponent('/playlist/new', 'Upload')}
           </li>
           <li className="nav__item">
-            <button onClick={() => authenticate.logout()}> Logout </button>
+            <button onClick={() => dispatch(authActions.logout())}>
+              {' '}
+              Logout{' '}
+            </button>
           </li>
         </>
       ) : (

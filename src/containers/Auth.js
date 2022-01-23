@@ -6,8 +6,6 @@ import Input from '../components/FormElements/Input';
 import svg from '../assets/Alone.svg';
 import BackgroundPattern from '../components/shared/BackgroundPattern';
 
-import useHttpClient from '../components/hooks/http-hook';
-import { AuthContext } from '../components/context/auth-context';
 import { useForm } from '../components/hooks/form-hook';
 
 import {
@@ -15,6 +13,11 @@ import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
 } from '../components/util/validation';
+
+import { useDispatch } from 'react-redux';
+import { auth } from '../store/auth/auth-actions';
+import { useSelector } from 'react-redux';
+import { authActions } from '../store/auth/auth-slice';
 
 const Auth = () => {
   const [formState, inputHandler, setFormData] = useForm(
@@ -30,55 +33,41 @@ const Auth = () => {
     },
     false
   );
-  const { error, sendRequest, clearError } = useHttpClient();
   const [isLoginMode, setIsLoginMode] = useState(true);
 
-  const authenticate = useContext(AuthContext);
+  const error = useSelector(state => state.auth.error);
 
-  const submitHandler = async e => {
+  const dispatch = useDispatch();
+
+  const submitHandler = e => {
     e.preventDefault();
-
     if (isLoginMode) {
-      try {
-        const res = await sendRequest(
-          'http://localhost:9000/api/users/login',
-          'POST',
-          JSON.stringify({
+      return dispatch(
+        auth({
+          type: 'login',
+          data: {
             email: formState.inputs.email.value,
             password: formState.inputs.password.value,
-          }),
-          {
-            'Content-Type': 'application/json',
-          }
-        );
-        authenticate.login(res.userId, res.token);
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      try {
-        const res = await sendRequest(
-          'http://localhost:9000/api/users/signup',
-          'POST',
-          JSON.stringify({
-            username: formState.inputs.name.value,
-            email: formState.inputs.email.value,
-            password: formState.inputs.password.value,
-            passwordConfirmation: formState.inputs.passwordConfirmation.value,
-          }),
-          {
-            'Content-Type': 'application/json',
-          }
-        );
-        authenticate.login(res.userId, res.token);
-      } catch (err) {
-        console.log(err);
-      }
+          },
+        })
+      );
     }
+
+    dispatch(
+      auth({
+        type: 'signup',
+        data: {
+          username: formState.inputs.name.value,
+          email: formState.inputs.email.value,
+          password: formState.inputs.password.value,
+          passwordConfirmation: formState.inputs.passwordConfirmation.value,
+        },
+      })
+    );
   };
 
   const switchModeHandler = () => {
-    clearError();
+    dispatch(authActions.clearError());
     if (!isLoginMode) {
       setFormData(
         {

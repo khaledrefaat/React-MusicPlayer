@@ -16,11 +16,10 @@ import Library from './containers/Library';
 import Upload from './containers/Upload';
 import Auth from './containers/Auth';
 
-import { AuthContext } from './components/context/auth-context';
-import useAuth from './components/hooks/auth-hook';
+import { useSelector } from 'react-redux';
 
 const App = () => {
-  const { token, userId, login, logout } = useAuth();
+  const token = useSelector(state => state.auth.token);
 
   const routes = () => {
     return token !== null ? (
@@ -49,16 +48,12 @@ const App = () => {
   };
 
   return (
-    <AuthContext.Provider
-      value={{ isLoggedIn: !!token, token, login, logout, userId }}
-    >
-      <Router>
-        <main className="app">
-          <Header />
-          <Routes>{routes()}</Routes>
-        </main>
-      </Router>
-    </AuthContext.Provider>
+    <Router>
+      <main className="app">
+        <Header />
+        <Routes>{routes()}</Routes>
+      </main>
+    </Router>
   );
 };
 
