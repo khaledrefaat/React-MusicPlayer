@@ -1,36 +1,21 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import UserItem from './UserItem';
 
-import useHttpClient from '../hooks/http-hook';
-
-import { AuthContext } from '../context/auth-context';
-
 const UserList = () => {
-  const [users, setUsers] = useState();
-  const { sendRequest } = useHttpClient();
-  const authenticate = useContext(AuthContext);
+  const userId = useSelector(state => state.auth.userId);
+  const users = useSelector(state => state.data.users);
 
-  useEffect(() => {
-    const fetchPlaylists = async () => {
-      try {
-        const usersData = await sendRequest('http://localhost:9000/api/users');
-        const removeCurrentUser = usersData.filter(
-          ({ _id }) => _id !== authenticate.userId
-        );
-        setUsers(removeCurrentUser);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchPlaylists();
-  }, [sendRequest, authenticate]);
-
-  // console.log(isMounted);
+  const filterUsersList = userId
+    ? users.filter(user => user._id !== userId)
+    : users;
 
   return (
     <div className="user-list">
       <h3>Users You May Like</h3>
-      {users && users.map(user => <UserItem user={user} key={user._id} />)}
+      {filterUsersList.map(user => (
+        <UserItem user={user} key={user._id} />
+      ))}
     </div>
   );
 };

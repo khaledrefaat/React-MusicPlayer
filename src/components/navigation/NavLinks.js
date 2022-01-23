@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { authActions } from '../../store/auth/auth-slice';
+import { authActions } from '../../store/auth-slice';
 
 const NavLinks = ({ isOpen, setIsOpen }) => {
   const dispatch = useDispatch();

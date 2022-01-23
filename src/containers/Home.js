@@ -1,37 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import Container from '../components/shared/Container';
 import UserList from '../components/user/UserList';
 import GridContainer from '../components/shared/GridContainer';
 import SongItem from '../components/songs/SongItem';
 import PagesTitle from '../components/shared/PagesTitle';
-import useHttpClient from '../components/hooks/http-hook';
 import Modal from '../components/shared/Modal';
+import { useDispatch } from 'react-redux';
+import { fetch } from '../store/data-slice';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
-  const [songsData, setSongsData] = useState();
-  const { sendRequest, isLoading } = useHttpClient();
+  const dispatch = useDispatch();
+
+  const { songs, error, isLoading } = useSelector(state => state.data);
 
   useEffect(() => {
-    const fetch = async () => {
-      try {
-        const songsData = await sendRequest('http://localhost:9000/api/songs');
-        setSongsData(songsData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetch();
-  }, [sendRequest]);
+    dispatch(fetch('http://localhost:9000/api/songs', 'songs'));
+    // so it will fetch new users each time we render homepage
+    dispatch(fetch('http://localhost:9000/api/users', 'users'));
+  }, [dispatch]);
 
   if (isLoading) return <Modal spinner={true} />;
 
   return (
     <Container direction="row">
-      {songsData && (
+      {songs && (
         <GridContainer>
           <PagesTitle title="songs you might like" />
-          {songsData.map(({ _id, songName, songCover, songArtist }) => (
+          {songs.map(({ _id, songName, songCover, songArtist }) => (
             <SongItem
               key={_id}
               name={songName}

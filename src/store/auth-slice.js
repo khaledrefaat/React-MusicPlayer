@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   isLoggedIn: false,
@@ -12,9 +13,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login(state, action) {
-      if (action.payload.message) {
-        state.error = action.payload.message;
-      }
       state.token = action.payload.token;
       state.userId = action.payload.userId;
       state.isLoggedIn = true;
@@ -34,12 +32,29 @@ const authSlice = createSlice({
       state.token = null;
       state.userId = null;
       state.isLoggedIn = false;
+      localStorage.removeItem('userData');
     },
-    clearError(state) {
-      state.error = null;
+    setError(state, action) {
+      state.error = action.payload;
     },
   },
 });
+
+// actions
+
+export const auth = formData => async dispatch => {
+  try {
+    const res = await axios.post(
+      'http://localhost:9000/api/users/' + formData.type,
+      formData.data
+    );
+
+    dispatch(authActions.login(res.data));
+    dispatch(authActions.setError(null));
+  } catch (err) {
+    dispatch(authActions.setError(err.response.data.message));
+  }
+};
 
 export const authActions = authSlice.actions;
 

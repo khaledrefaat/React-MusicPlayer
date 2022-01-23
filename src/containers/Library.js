@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Container from '../components/shared/Container';
@@ -6,35 +6,29 @@ import SongItem from '../components/songs/SongItem';
 
 import GridContainer from '../components/shared/GridContainer';
 
-import useHttpClient from '../components/hooks/http-hook';
 import Modal from '../components/shared/Modal';
 
-import { AuthContext } from '../components/context/auth-context';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetch } from '../store/data-slice';
 
 const Library = () => {
-  const { isLoading, error, sendRequest } = useHttpClient();
-  const [playLists, setPlaylists] = useState();
-  const { userId } = useContext(AuthContext);
+  const dispatch = useDispatch();
+
+  const userId = useSelector(state => state.auth.userId);
+  const { userPlaylists, isLoading, error } = useSelector(state => state.data);
 
   const paramsUserId = useParams();
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        if (paramsUserId.userId || userId) {
-          const res = await sendRequest(
-            `http://localhost:9000/api/playlists/user/${
-              paramsUserId.userId || userId
-            }`
-          );
-          setPlaylists(res);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-  }, [sendRequest, userId, setPlaylists, paramsUserId]);
+    dispatch(
+      fetch(
+        `http://localhost:9000/api/playlists/user/${
+          paramsUserId.userId || userId
+        }`,
+        'userPlaylists'
+      )
+    );
+  }, [dispatch, userId, paramsUserId]);
 
   if (isLoading) return <Modal spinner />;
 
@@ -42,8 +36,8 @@ const Library = () => {
     <Container direction="row">
       <GridContainer fullwidth>
         {error && <h1>{error}</h1>}
-        {playLists &&
-          playLists.map(({ playlistName, playlistCover, _id }) => {
+        {userPlaylists &&
+          userPlaylists.map(({ playlistName, playlistCover, _id }) => {
             return (
               <SongItem
                 link={`/playlist/${_id}`}

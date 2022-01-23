@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import Container from '../components/shared/Container';
 import SongItem from '../components/songs/SongItem';
@@ -6,27 +6,19 @@ import SongItem from '../components/songs/SongItem';
 import UserList from '../components/user/UserList';
 import PagesTitle from '../components/shared/PagesTitle';
 import GridContainer from '../components/shared/GridContainer';
-import useHttpClient from '../components/hooks/http-hook';
 import Modal from '../components/shared/Modal';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetch } from '../store/data-slice';
 
 const PlayLists = () => {
-  const [playlists, setPlaylsits] = useState();
-  const { sendRequest, isLoading } = useHttpClient();
+  const dispatch = useDispatch();
+  const { playlists, isLoading } = useSelector(state => state.data);
 
   useEffect(() => {
-    const fetchPlaylists = async () => {
-      try {
-        const playlistsData = await sendRequest(
-          'http://localhost:9000/api/playlists'
-        );
-
-        setPlaylsits(playlistsData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchPlaylists();
-  }, [sendRequest]);
+    dispatch(fetch('http://localhost:9000/api/playlists', 'playlists'));
+    // so it will fetch new users each time we render playlists
+    dispatch(fetch('http://localhost:9000/api/users', 'users'));
+  }, [dispatch]);
 
   if (isLoading) return <Modal spinner={true} />;
 

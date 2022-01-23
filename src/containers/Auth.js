@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Form from '../components/FormElements/Form';
 import CustomButton from '../components/shared/CustomButton';
 import Input from '../components/FormElements/Input';
@@ -15,9 +15,8 @@ import {
 } from '../components/util/validation';
 
 import { useDispatch } from 'react-redux';
-import { auth } from '../store/auth/auth-actions';
+import { auth, authActions } from '../store/auth-slice';
 import { useSelector } from 'react-redux';
-import { authActions } from '../store/auth/auth-slice';
 
 const Auth = () => {
   const [formState, inputHandler, setFormData] = useForm(
@@ -67,7 +66,7 @@ const Auth = () => {
   };
 
   const switchModeHandler = () => {
-    dispatch(authActions.clearError());
+    dispatch(authActions.setError(null));
     if (!isLoginMode) {
       setFormData(
         {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -16,10 +16,31 @@ import Library from './containers/Library';
 import Upload from './containers/Upload';
 import Auth from './containers/Auth';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { authActions } from './store/auth-slice';
 
 const App = () => {
+  const dispatch = useDispatch();
   const token = useSelector(state => state.auth.token);
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('userData'));
+    if (
+      storedData &&
+      storedData.token &&
+      new Date(storedData.expirationDate) > new Date()
+    ) {
+      dispatch(
+        authActions.login({
+          token: storedData.token,
+          userId: storedData.userId,
+          expirationDate: storedData.expirationDate,
+        })
+      );
+    } else {
+      dispatch(authActions.logout());
+    }
+  }, [dispatch]);
 
   const routes = () => {
     return token !== null ? (
