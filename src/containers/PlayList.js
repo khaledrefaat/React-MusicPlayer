@@ -1,73 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Song from '../components/songs/Song';
 import Player from '../components/songs/Player';
-import data from '../data';
 import LibraryNav from '../components/songs/LibraryNav';
 import LibraryToggleIcon from '../components/songs/LibraryToggleIcon';
 import Container from '../components/shared/Container';
+import Modal from '../components/shared/Modal';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPlaylist } from '../store/runingPlaylist-slice';
+import { playlistActions } from '../store/runingPlaylist-slice';
 
 const PlayList = () => {
-  const [songs, setSongs] = useState(data());
-  const [songIndex, setSongIndex] = useState(0);
-  const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
 
-  const setActiveSong = index => {
-    const songsArr = songs;
-    songsArr.forEach(song => (song.active = false));
-    songsArr[index].active = true;
-    setSongs(songsArr);
-  };
+  const dispatch = useDispatch();
 
-  const handelNextSong = direction => {
-    let index = 0;
-    if (songIndex === 0 && direction < 0) {
-      index = songs.length - 1;
-    } else if (songIndex === songs.length - 1 && direction > 0) {
-      index = 0;
-    } else {
-      index = songIndex + direction;
-    }
+  const { currentPlaylist, activeSongIndex, isLoading, error } = useSelector(
+    state => state.runingPlaylist
+  );
 
-    setSongIndex(index);
-    setCurrentSong(songs[index]);
-    setActiveSong(index);
-  };
+  const { playlistId } = useParams();
 
-  const handelLibrarySong = index => {
-    setCurrentSong(songs[index]);
-    setSongIndex(index);
-    setActiveSong(index);
-  };
+  useEffect(() => {
+    dispatch(fetchPlaylist(playlistId));
+  }, [dispatch, playlistId]);
+
+  const handelNextSong = direction =>
+    dispatch(playlistActions.setActiveSong(direction));
+
+  useEffect(() => {}, [activeSongIndex]);
 
   const handelSpaceClick = e => {
     if (e.key === ' ') setIsPlaying(isPlaying => !isPlaying);
   };
 
-  const handelItemClick = song => {
-    const index = songs.findIndex(currentSong => currentSong.id === song.id);
-    setCurrentSong(songs[index]);
-    setActiveSong(index);
+  const handelItemClick = index => {
+    dispatch(playlistActions.setActiveSong({ index: index }));
   };
+
+  if (isLoading) return <Modal spinner />;
+
+  if (error) return <h1>{error}</h1>;
 
   return (
     <Container tabIndex={0} onKeyDown={handelSpaceClick}>
-      <Song currentSong={currentSong} />
-      <Player
-        currentSong={currentSong}
-        onChangeSong={handelNextSong}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-      />
-      <LibraryNav
-        isLibraryOpen={isLibraryOpen}
-        setSong={handelLibrarySong}
-        songs={songs}
-        onItemClick={handelItemClick}
-      />
-      <LibraryToggleIcon setIsLibraryOpen={setIsLibraryOpen} />
+      {currentPlaylist.songs && (
+        <>
+          <Song currentSong={currentPlaylist.songs[activeSongIndex]} />
+          <Player
+            currentSong={currentPlaylist.songs[activeSongIndex]}
+            onChangeSong={handelNextSong}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+          />
+          <LibraryNav
+            isLibraryOpen={isLibraryOpen}
+            songs={currentPlaylist.songs}
+            onItemClick={handelItemClick}
+          />
+          <LibraryToggleIcon setIsLibraryOpen={setIsLibraryOpen} />
+        </>
+      )}
     </Container>
   );
 };

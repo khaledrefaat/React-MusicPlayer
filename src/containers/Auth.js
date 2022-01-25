@@ -32,6 +32,7 @@ const Auth = () => {
     },
     false
   );
+
   const [isLoginMode, setIsLoginMode] = useState(true);
 
   const error = useSelector(state => state.auth.error);

@@ -43,17 +43,15 @@ const App = () => {
   }, [dispatch]);
 
   const routes = () => {
-    return token !== null ? (
+    return token !== undefined ? (
       <>
         <Route index element={<Home />} />
         <Route path="user/profile/:userId" element={<Library />} />
         <Route path="/library" element={<Library />} />
         <Route path="playlists" element={<PlayLists />} />
         <Route path="playlist/new" element={<Upload />} />
-        <Route path="playlist/:id" element={<PlayList />} />
-        {token !== undefined && (
-          <Route path="*" element={<Navigate to="/" />} />
-        )}
+        <Route path="playlist/:playlistId" element={<PlayList />} />
+        {token !== null && <Route path="*" element={<Navigate to="/" />} />}
       </>
     ) : (
       <>
@@ -61,7 +59,7 @@ const App = () => {
         <Route path="playlists" element={<PlayLists />} />
         <Route path="playlist/:id" element={<PlayList />} />
         <Route path="user/auth" element={<Auth />} />
-        {token !== undefined && (
+        {token !== null && (
           <Route path="*" element={<Navigate to="/user/auth" />} />
         )}
       </>

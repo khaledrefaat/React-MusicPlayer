@@ -7,7 +7,9 @@ const UserItem = ({ user }) => {
       <div className="user">
         <div
           className="user__img"
-          style={{ backgroundImage: `url(${user.image})` }}
+          style={{
+            backgroundImage: `url(${`http://localhost:9000/${user.image}`})`,
+          }}
         ></div>
         <ItemContent
           title={user.username}

@@ -31,7 +31,7 @@ const PlayLists = () => {
             return (
               <SongItem
                 name={playlistName}
-                cover={playlistCover}
+                cover={`http://localhost:9000/${playlistCover}`}
                 link={`/playlist/${_id}`}
                 key={_id}
               />

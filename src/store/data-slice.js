@@ -6,6 +6,7 @@ const initialState = {
   playlists: [],
   users: [],
   userPlaylists: [],
+  runingPlaylist: [],
   isLoading: false,
   error: null,
 };
@@ -43,14 +44,18 @@ export const fetch = (url, type) => async dispatch => {
   try {
     const res = await axios.get(url);
 
-    if (type === 'songs') {
-      dispatch(dataSlice.actions.setSongs(res.data));
-    } else if (type === 'playlists') {
-      dispatch(dataSlice.actions.setPlaylists(res.data));
-    } else if (type === 'users') {
-      dispatch(dataSlice.actions.setUsers(res.data));
-    } else if (type === 'userPlaylists') {
-      dispatch(dataSlice.actions.setUserPlaylists(res.data));
+    switch (type) {
+      case 'playlists':
+        dispatch(dataSlice.actions.setPlaylists(res.data));
+        break;
+      case 'users':
+        dispatch(dataSlice.actions.setUsers(res.data));
+        break;
+      case 'userPlaylists':
+        dispatch(dataSlice.actions.setUserPlaylists(res.data));
+        break;
+      default:
+        dispatch(dataSlice.actions.setSongs(res.data));
     }
 
     dispatch(dataSlice.actions.setLoading(false));

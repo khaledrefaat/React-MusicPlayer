@@ -16,7 +16,7 @@ const Home = () => {
   const { songs, error, isLoading } = useSelector(state => state.data);
 
   useEffect(() => {
-    dispatch(fetch('http://localhost:9000/api/songs', 'songs'));
+    dispatch(fetch('http://localhost:9000/api/songs'));
     // so it will fetch new users each time we render homepage
     dispatch(fetch('http://localhost:9000/api/users', 'users'));
   }, [dispatch]);
@@ -32,7 +32,7 @@ const Home = () => {
             <SongItem
               key={_id}
               name={songName}
-              cover={songCover}
+              cover={`http://localhost:9000/${songCover}`}
               artist={songArtist || 'Unknown'}
               link={`/song/${_id}`}
             />

@@ -29,7 +29,7 @@ const authSlice = createSlice({
       );
     },
     logout(state) {
-      state.token = null;
+      state.token = undefined;
       state.userId = null;
       state.isLoggedIn = false;
       localStorage.removeItem('userData');

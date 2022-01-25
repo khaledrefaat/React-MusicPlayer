@@ -42,7 +42,7 @@ const Library = () => {
               <SongItem
                 link={`/playlist/${_id}`}
                 name={playlistName}
-                cover={playlistCover}
+                cover={`http://localhost:9000/${playlistCover}`}
                 key={_id}
               />
             );

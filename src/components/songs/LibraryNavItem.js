@@ -2,16 +2,22 @@ import React from 'react';
 
 import ItemContent from '../shared/ItemContent';
 
-const LibraryNavItem = ({ song, onClick }) => {
+import { useSelector } from 'react-redux';
+
+const LibraryNavItem = ({ song, onClick, index }) => {
+  const activeIndex = useSelector(
+    state => state.runingPlaylist.activeSongIndex
+  );
+
   return (
     <div
-      className={`library-nav-item ${song.active ? 'active' : ''}`}
-      onClick={() => onClick(song)}
+      className={`library-nav-item ${index === activeIndex ? 'active' : ''}`}
+      onClick={() => onClick(index)}
     >
-      <img src={song.cover} alt={song.name} />
+      <img src={`http://localhost:9000/${song.songCover}`} alt={song.name} />
       <ItemContent
-        title={song.name}
-        description={song.artist}
+        title={song.songName}
+        description={song.songArtist || 'Unknown'}
         className="library-nav-item__description"
       />
     </div>
