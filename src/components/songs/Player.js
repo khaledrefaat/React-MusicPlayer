@@ -77,7 +77,7 @@ const Player = ({ isPlaying, setIsPlaying, onChangeSong, currentSong }) => {
         onTimeUpdate={timeUpdateHandler}
         ref={audioRef}
         onLoadedMetadataCapture={timeUpdateHandler}
-        src={currentSong.audio}
+        src={currentSong.song}
         onEnded={() => onChangeSong(1)}
       ></audio>
     </div>

@@ -30,6 +30,8 @@ const Library = () => {
     );
   }, [dispatch, userId, paramsUserId]);
 
+  console.log(userPlaylists);
+
   if (isLoading) return <Modal spinner />;
 
   return (

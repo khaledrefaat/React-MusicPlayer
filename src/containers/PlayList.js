@@ -46,7 +46,11 @@ const PlayList = () => {
   if (error) return <h1>{error}</h1>;
 
   return (
-    <Container tabIndex={0} onKeyDown={handelSpaceClick}>
+    <Container
+      onClick={() => setIsLibraryOpen(false)}
+      tabIndex={0}
+      onKeyDown={handelSpaceClick}
+    >
       {currentPlaylist.songs && (
         <>
           <Song currentSong={currentPlaylist.songs[activeSongIndex]} />

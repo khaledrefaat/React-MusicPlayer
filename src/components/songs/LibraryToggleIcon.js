@@ -4,7 +4,10 @@ import { ReactComponent as MusicIcon } from '../../assets/musical-notes.svg';
 const LibraryToggle = ({ setIsLibraryOpen }) => {
   return (
     <button
-      onClick={() => setIsLibraryOpen(isPlaying => !isPlaying)}
+      onClick={e => {
+        e.stopPropagation();
+        setIsLibraryOpen(isPlaying => !isPlaying);
+      }}
       className="library-toggle"
     >
       Library <MusicIcon />

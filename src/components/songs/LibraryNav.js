@@ -12,7 +12,10 @@ const LibraryNav = ({ songs, isLibraryOpen, onItemClick }) => {
   ));
 
   return (
-    <div className={`library-nav ${isLibraryOpen ? 'active' : ''}`}>
+    <div
+      onClick={e => e.stopPropagation()}
+      className={`library-nav ${isLibraryOpen ? 'active' : ''}`}
+    >
       <h2>Library</h2>
       <div className="library-songs">{renderSongs}</div>
     </div>
