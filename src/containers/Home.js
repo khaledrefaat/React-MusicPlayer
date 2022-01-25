@@ -14,6 +14,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const { songs, error, isLoading } = useSelector(state => state.data);
+  const { userId } = useSelector(state => state.auth);
 
   useEffect(() => {
     dispatch(fetch('http://localhost:9000/api/songs'));
@@ -23,20 +24,24 @@ const Home = () => {
 
   if (isLoading) return <Modal spinner={true} />;
 
+  if (error) return <h1>{error}</h1>;
+
   return (
     <Container direction="row">
       {songs && (
         <GridContainer>
           <PagesTitle title="songs you might like" />
-          {songs.map(({ _id, songName, songCover, songArtist }) => (
-            <SongItem
-              key={_id}
-              name={songName}
-              cover={`http://localhost:9000/${songCover}`}
-              artist={songArtist || 'Unknown'}
-              link={`/song/${_id}`}
-            />
-          ))}
+          {songs
+            .filter(song => song.creator !== userId)
+            .map(({ _id, songName, songCover, songArtist }) => (
+              <SongItem
+                key={_id}
+                name={songName}
+                cover={`http://localhost:9000/${songCover}`}
+                artist={songArtist || 'Unknown'}
+                link={`/song/${_id}`}
+              />
+            ))}
         </GridContainer>
       )}
       <UserList />

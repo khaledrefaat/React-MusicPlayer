@@ -13,6 +13,7 @@ import { fetch } from '../store/data-slice';
 const PlayLists = () => {
   const dispatch = useDispatch();
   const { playlists, isLoading } = useSelector(state => state.data);
+  const { userId } = useSelector(state => state.auth);
 
   useEffect(() => {
     dispatch(fetch('http://localhost:9000/api/playlists', 'playlists'));
@@ -27,16 +28,17 @@ const PlayLists = () => {
       {playlists && (
         <GridContainer>
           <PagesTitle title="some playlists you might like" />
-          {playlists.map(({ playlistName, _id, playlistCover }) => {
-            return (
+          {playlists
+            .filter(playlist => playlist.creator.id !== userId)
+            .map(({ playlistName, _id, playlistCover, creator }) => (
               <SongItem
                 name={playlistName}
                 cover={`http://localhost:9000/${playlistCover}`}
                 link={`/playlist/${_id}`}
+                artist={creator.creator}
                 key={_id}
               />
-            );
-          })}
+            ))}
         </GridContainer>
       )}
       <UserList />
