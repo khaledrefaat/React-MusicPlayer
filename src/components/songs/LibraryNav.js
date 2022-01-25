@@ -1,10 +1,12 @@
 import React from 'react';
+import { nanoid } from '@reduxjs/toolkit';
+
 import LibraryNavItem from './LibraryNavItem';
 
 const LibraryNav = ({ songs, isLibraryOpen, onItemClick }) => {
   const renderSongs = songs.map((song, index) => (
     <LibraryNavItem
-      key={index}
+      key={nanoid()}
       onClick={onItemClick}
       song={song}
       index={index}

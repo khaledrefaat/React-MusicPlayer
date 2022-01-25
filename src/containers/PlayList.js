@@ -43,7 +43,20 @@ const PlayList = () => {
 
   if (isLoading) return <Modal spinner />;
 
-  if (error) return <h1>{error}</h1>;
+  if (error)
+    return (
+      <Container className="center">
+        <h1>{error}</h1>
+      </Container>
+    );
+
+  if (currentPlaylist.songs && currentPlaylist.songs.length === 0) {
+    return (
+      <Container className="center">
+        <h1>There is no songs in this playlist.</h1>
+      </Container>
+    );
+  }
 
   return (
     <Container

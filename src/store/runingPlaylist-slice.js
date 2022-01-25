@@ -2,7 +2,7 @@ import { createSlice, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  currentPlaylist: [],
+  currentPlaylist: {},
   activeSongIndex: 0,
   localSettings: { volume: null, muted: false },
   isLoading: false,
