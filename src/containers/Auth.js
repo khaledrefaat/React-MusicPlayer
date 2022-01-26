@@ -97,6 +97,8 @@ const Auth = () => {
     setIsLoginMode(isLoginMode => !isLoginMode);
   };
 
+  console.log(formState);
+
   return (
     <BackgroundPattern className="auth">
       <div className="auth__card" style={{ backgroundImage: `url(${svg})` }}>

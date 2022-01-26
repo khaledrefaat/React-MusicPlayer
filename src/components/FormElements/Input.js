@@ -47,7 +47,7 @@ const Input = ({
   return (
     <div
       className={`input-group ${
-        !inputState.isValid && inputState.isTouched ? 'error' : ''
+        !inputState.isValid && inputState.isTouched && errorText ? 'error' : ''
       }`}
     >
       <input onChange={changeHandler} onBlur={onTouch} {...restProps} />

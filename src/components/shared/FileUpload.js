@@ -39,7 +39,7 @@ const FileUpload = props => {
   };
 
   return (
-    <div className={''}>
+    <>
       <input
         id={props.id}
         style={{ display: 'none' }}
@@ -60,7 +60,7 @@ const FileUpload = props => {
         </CustomButton>
       </div>
       {!isValid && <p>{props.errorText}</p>}
-    </div>
+    </>
   );
 };
 
