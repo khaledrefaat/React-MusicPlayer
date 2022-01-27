@@ -46,6 +46,20 @@
 
 .file-button {
   background-color: var(--color-secondary);
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  position: absolute;
+  top: 85%;
+  margin: 0 auto;
+  width: 90%;
+  padding: 2px 0;
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    fill: var(--color-white);
+  }
 }

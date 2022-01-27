@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import CustomButton from './CustomButton';
 
+import { ReactComponent as Svg } from '../../assets/camera.svg';
+
 const FileUpload = props => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
@@ -53,11 +55,16 @@ const FileUpload = props => {
       >
         <div className="file-upload__preview">
           {previewUrl && <img src={previewUrl} alt="Preview" />}
-          {!previewUrl && <p>Please Pick an Image</p>}
+          {!previewUrl && <p>{props.boxText}</p>}
+          <CustomButton
+            onClick={pickImageHandler}
+            type="button"
+            fileButton
+            svg={<Svg />}
+          >
+            Pick Image
+          </CustomButton>
         </div>
-        <CustomButton onClick={pickImageHandler} type="button" fileButton>
-          Pick Image
-        </CustomButton>
       </div>
       {!isValid && <p>{props.errorText}</p>}
     </>

@@ -6,6 +6,7 @@ const FormButton = ({
   fileButton,
   memberButton,
   className,
+  svg,
   ...props
 }) => {
   return (
@@ -16,6 +17,7 @@ const FormButton = ({
       } ${className ? className : ''}`}
       onClick={onClick}
     >
+      {svg}
       <span>{children}</span>
     </button>
   );
